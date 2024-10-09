@@ -16,7 +16,7 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/trilogy-group/gfi-agent/logger"
+	"github.com/trilogy-group/gfi-agent-sdk/logger"
 
 	cp "github.com/otiai10/copy"
 )

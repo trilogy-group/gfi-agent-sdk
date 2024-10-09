@@ -19,15 +19,16 @@ import (
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
 	"github.com/sirupsen/logrus"
-	"github.com/trilogy-group/gfi-agent/constants"
-	"github.com/trilogy-group/gfi-agent/logger/lumberjack"
-	"github.com/trilogy-group/gfi-agent/version"
+	"github.com/trilogy-group/gfi-agent-sdk/logger/lumberjack"
+	"github.com/trilogy-group/gfi-agent-sdk/version"
 )
 
 var Logger *logger
 
+const GFIAgentLogDir = "C:\\ProgramData\\GFIAgent\\Logs"
+
 func LogDir() string {
-	return constants.GFIAgentLogDir
+	return GFIAgentLogDir
 }
 
 type LogFile struct {
@@ -51,8 +52,8 @@ func GetStdFields() *logrus.Fields {
 	proc := GetFileNameWithoutExtension(filepath.Base(os.Args[0]))
 	return &logrus.Fields{
 		"version": version.Long(),
-		"proc": proc,
-		"pid": os.Getpid(),
+		"proc":    proc,
+		"pid":     os.Getpid(),
 	}
 }
 
@@ -205,7 +206,7 @@ func init() {
 		Level: logrus.InfoLevel,
 		Formatter: &nested.Formatter{
 			ShowFullLevel:   true,
-			NoColors:		 true,
+			NoColors:        true,
 			TimestampFormat: "2006-01-02 15:04:05",
 		},
 	}
