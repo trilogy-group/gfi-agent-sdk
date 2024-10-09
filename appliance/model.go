@@ -11,7 +11,6 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/rand"
-	"encoding/base64"
 	"errors"
 	"fmt"
 	"io"
@@ -278,18 +277,6 @@ func Decrypt(ciphertext []byte, key *[32]byte) (plaintext []byte, err error) {
 		ciphertext[gcm.NonceSize():],
 		nil,
 	)
-}
-
-func Base64Encode(str string) string {
-	return base64.StdEncoding.EncodeToString([]byte(str))
-}
-
-func Base64Decode(str string) (string, bool) {
-	data, err := base64.StdEncoding.DecodeString(str)
-	if err != nil {
-		return "", true
-	}
-	return string(data), false
 }
 
 func EncryptPassword(password string) (string, error) {
