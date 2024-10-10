@@ -13,13 +13,13 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"sync"
 	"time"
 
 	nested "github.com/antonfisher/nested-logrus-formatter"
 	"github.com/sirupsen/logrus"
+	"github.com/trilogy-group/gfi-agent-sdk/constants"
 	"github.com/trilogy-group/gfi-agent-sdk/logger/lumberjack"
 	"github.com/trilogy-group/gfi-agent-sdk/version"
 )
@@ -29,10 +29,7 @@ var Logger *logger
 const GFIAgentLogDir = "C:\\ProgramData\\GFIAgent\\Logs"
 
 func LogDir() string {
-	if runtime.GOOS == "windows" {
-		return GFIAgentLogDir
-	}
-	return "/var/log/gfiagent"
+	return constants.GFIAgentLogDir
 }
 
 type LogFile struct {
