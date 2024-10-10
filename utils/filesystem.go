@@ -5,7 +5,7 @@
  * used except as expressly permitted by the terms of the software license agreement.
  */
 
-package appliance
+package utils
 
 import (
 	"crypto/md5"

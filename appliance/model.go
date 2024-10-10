@@ -22,6 +22,7 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
+	"github.com/trilogy-group/gfi-agent-sdk/utils"
 )
 
 type Status byte
@@ -344,7 +345,7 @@ func (C *ConfigManager) LoadApplianceConfig(config ConfigWithPassword) error {
 }
 
 func (C *ConfigManager) Remove() error {
-	return FS.RemoveFile(C.FullPath())
+	return utils.FS.RemoveFile(C.FullPath())
 }
 
 func (C *ConfigManager) SaveApplianceConfig(config ConfigWithPassword) error {
@@ -364,7 +365,7 @@ func (C *ConfigManager) SaveApplianceConfig(config ConfigWithPassword) error {
 func (C *ConfigManager) Save(config interface{}) error {
 	mutex.Lock()
 	dir := filepath.Dir(C.FullPath())
-	if !FS.CreateDir(dir) {
+	if !utils.FS.CreateDir(dir) {
 		return fmt.Errorf("could not create dir: %s", dir)
 	}
 	f, err := os.Create(C.FullPath())
