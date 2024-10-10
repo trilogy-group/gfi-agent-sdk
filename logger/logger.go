@@ -13,6 +13,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"sync"
 	"time"
@@ -28,7 +29,10 @@ var Logger *logger
 const GFIAgentLogDir = "C:\\ProgramData\\GFIAgent\\Logs"
 
 func LogDir() string {
-	return GFIAgentLogDir
+	if runtime.GOOS == "windows" {
+		return GFIAgentLogDir
+	}
+	return "/var/log/gfiagent"
 }
 
 type LogFile struct {
